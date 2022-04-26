@@ -1,19 +1,12 @@
-package main
+/*
+ * @lc app=leetcode.cn id=7 lang=golang
+ *
+ * [7] 整数反转
+ */
 
-import "log"
-
-func main() {
-	input := 123
-	output := reverse(input)
-	log.Println(output)
-	input = -123
-	output = reverse(input)
-	log.Println(output)
-}
+// @lc code=start
 func reverse(x int) int {
-
 	res := 0
-	pre := 1
 	for {
 		mod := x % 10
 
@@ -31,8 +24,10 @@ func reverse(x int) int {
 		if x == 0 {
 			break
 		}
-		pre = pre * 10
 	}
 
 	return res
 }
+
+// @lc code=end
+
