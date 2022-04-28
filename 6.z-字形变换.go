@@ -1,3 +1,7 @@
+package main
+
+import "strings"
+
 /*
  * @lc app=leetcode.cn id=6 lang=golang
  *
@@ -24,4 +28,3 @@ func convert(s string, numRows int) string {
 }
 
 // @lc code=end
-

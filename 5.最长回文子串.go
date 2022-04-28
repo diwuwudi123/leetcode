@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=5 lang=golang
  *
@@ -35,4 +37,3 @@ func palindrome(s string, l, r int) string {
 }
 
 // @lc code=end
-

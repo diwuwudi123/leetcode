@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=3 lang=golang
  *
@@ -38,4 +40,3 @@ func lengthOfLongestSubstring(s string) int {
 }
 
 // @lc code=end
-

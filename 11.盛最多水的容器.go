@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=11 lang=golang
  *
@@ -37,4 +39,3 @@ func getMaxByTwoNum(a, b int) int {
 }
 
 // @lc code=end
-

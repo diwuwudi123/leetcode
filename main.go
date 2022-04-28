@@ -2,37 +2,52 @@ package main
 
 import "log"
 
+var lists = []*ListNode{}
+
 func main() {
-	input := 123
-	output := reverse(input)
-	log.Println(output)
-	input = -123
-	output = reverse(input)
-	log.Println(output)
-}
-func reverse(x int) int {
-
-	res := 0
-	pre := 1
+	node1 := &ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 4,
+			Next: &ListNode{
+				Val: 5,
+			},
+		},
+	}
+	node2 := &ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 3,
+			Next: &ListNode{
+				Val: 4,
+			},
+		},
+	}
+	node3 := &ListNode{
+		Val: 2,
+		Next: &ListNode{
+			Val: 6,
+		},
+	}
+	lists = append(lists, node1, node2, node3)
+	for _, node := range lists {
+		addNode(node)
+	}
+	res := &ListNode{}
+	ret := res
 	for {
-		mod := x % 10
-
-		if res > 214748364 || (res == 214748364 && mod > 7) {
-			return 0
-		}
-		//判断是否 小于 最小32位整数
-		if res < -214748364 || (res == -214748364 && mod < -8) {
-			return 0
-		}
-
-		x = x / 10
-
-		res = res*10 + mod
-		if x == 0 {
+		val := delNode()
+		if val == nil {
 			break
 		}
-		pre = pre * 10
+		res.Next = val
+		res = res.Next
 	}
-
-	return res
+	for {
+		if ret == nil {
+			break
+		}
+		log.Println(ret.Val)
+		ret = ret.Next
+	}
 }

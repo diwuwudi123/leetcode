@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=7 lang=golang
  *
@@ -30,4 +32,3 @@ func reverse(x int) int {
 }
 
 // @lc code=end
-
