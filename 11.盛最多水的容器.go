@@ -8,34 +8,31 @@ package main
 
 // @lc code=start
 func maxArea(height []int) int {
-	left := 0
-	right := len(height) - 1
-	res := 0
-	for {
-		if left >= right {
-			break
-		}
-		min := getMinByTwoNum(height[left], height[right])
-		res = getMaxByTwoNum(res, min*(right-left))
+	left, right := 0, len(height)-1
+	maxNum := 0
+	for right > left {
+		m := min(height[left], height[right])
+		maxNum = max(m*(right-left), maxNum)
 		if height[left] < height[right] {
 			left++
 		} else {
 			right--
 		}
+
 	}
-	return res
+	return maxNum
 }
-func getMinByTwoNum(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-func getMaxByTwoNum(a, b int) int {
+func max(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
+}
+func min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
 }
 
 // @lc code=end
