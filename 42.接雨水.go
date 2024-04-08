@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	arr := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+	arr := []int{3, 0, 3}
 	// arr := []int{4, 2, 0, 3, 2, 5}
 
 	res := trap(arr)
@@ -21,10 +21,10 @@ func main() {
 // @lc code=start
 func trap(height []int) int {
 	size := len(height)
-	res := 0
 	l_max := make([]int, size)
-	l_max[0] = height[0]
 	r_max := make([]int, size)
+	res := 0
+	l_max[0] = height[0]
 	r_max[size-1] = height[size-1]
 	for i := 1; i < size; i++ {
 		l_max[i] = max(height[i], l_max[i-1])
@@ -34,7 +34,6 @@ func trap(height []int) int {
 	}
 	for i := 1; i < size; i++ {
 		res += min(l_max[i], r_max[i]) - height[i]
-
 	}
 	return res
 

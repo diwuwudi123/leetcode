@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	nums := []int{1, 3, -1, -3, 5, 3, 6, 7}
+	nums := []int{1, 3, 1, 2, 0, 5}
 	k := 3
 	res := maxSlidingWindow(nums, k)
 	log.Println(res)
@@ -20,42 +20,37 @@ func main() {
 
 // @lc code=start
 func maxSlidingWindow(nums []int, k int) []int {
-	res := []int{}
 	arr := &maxArr{}
+	res := []int{}
 	for i := 0; i < len(nums); i++ {
 		if i < k-1 {
 			arr.push(nums[i])
 		} else {
 			arr.push(nums[i])
-
 			max := arr.max()
-			//窗口滑动 往右移 最左边的会弹出来
-			arr.pop(nums[i-k+1])
 			res = append(res, max)
+			arr.pop(nums[i+1-k])
 		}
-
 	}
 	return res
 }
 
-type maxArr struct {
-	arr []int
-}
+type maxArr []int
 
-func (m *maxArr) push(k int) {
-	//遍历 把所有小于k的都删掉
-	for len(m.arr) > 0 && m.arr[len(m.arr)-1] < k {
-		m.arr = m.arr[:len(m.arr)-1]
+func (m *maxArr) push(num int) {
+	for len(*m) > 0 && (*m)[len(*m)-1] < num {
+		(*m) = (*m)[:len(*m)-1]
 	}
-	m.arr = append(m.arr, k)
+	(*m) = append(*m, num)
 }
 func (m *maxArr) max() int {
-	return m.arr[0]
+	return (*m)[0]
 }
-func (m *maxArr) pop(k int) {
-	if k == m.arr[0] {
-		m.arr = m.arr[1:]
+func (m *maxArr) pop(num int) {
+	if (*m)[0] == num {
+		(*m) = (*m)[1:]
 	}
+
 }
 
 // @lc code=end

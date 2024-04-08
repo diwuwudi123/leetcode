@@ -1,3 +1,13 @@
+package main
+
+import "log"
+
+func main() {
+	arr := []int{1, 0, 5, 0, 5, 2, 3, 9, 0, 3}
+	moveZeroes(arr)
+	log.Println(arr)
+}
+
 /*
  * @lc app=leetcode.cn id=283 lang=golang
  *
@@ -6,20 +16,19 @@
 
 // @lc code=start
 func moveZeroes(nums []int) {
-	s, f := 0, 0
-	for f < len(nums) {
-		if nums[f] != 0 {
-			nums[s] = nums[f]
-			s++
+	slow, fast := 0, 0
+	for fast < len(nums) {
+		if nums[fast] != 0 {
+			nums[slow] = nums[fast]
+			slow++
 		}
-		f++
+		fast++
 	}
-	for s < len(nums) {
-		nums[s] = 0
-		s++
+	for slow < len(nums) {
+		nums[slow] = 0
+		slow++
 	}
-	return
+
 }
 
 // @lc code=end
-

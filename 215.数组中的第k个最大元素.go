@@ -2,6 +2,20 @@ package main
 
 import "log"
 
+func main() {
+	a := []int{12, -34, 11, 67, 15, 63, 25, 17, 1, 56, 33, 28, 99}
+	m := &minHeap{}
+	for _, num := range a {
+		m.push(num)
+	}
+	log.Println(m)
+	for m.len() > 1 {
+		m.pop()
+		log.Println(m)
+	}
+
+}
+
 /*
  * @lc app=leetcode.cn id=215 lang=golang
  *
@@ -16,19 +30,6 @@ func findKthLargest(nums []int, k int) int {
 
 	}
 	return (*m)[0]
-}
-func main() {
-	a := []int{12, -34, 11, 67, 15, 63, 25, 17, 1, 56, 33, 28, 99}
-	m := &minHeap{}
-	for _, num := range a {
-		m.push(num)
-	}
-	log.Println(m)
-	for m.len() > 1 {
-		m.pop()
-		log.Println(m)
-	}
-
 }
 
 type minHeap []int

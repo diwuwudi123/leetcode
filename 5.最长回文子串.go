@@ -19,13 +19,13 @@ func longestPalindrome(s string) string {
 	res := ""
 	for i := 0; i < len(s); i++ {
 		s1 := palindrome(s, i, i)
-		// s2 := palindrome(s, i, i+1)
+		s2 := palindrome(s, i, i+1)
 		if len(s1) > len(res) {
 			res = s1
 		}
-		// if len(s2) > len(res) {
-		// 	res = s2
-		// }
+		if len(s2) > len(res) {
+			res = s2
+		}
 	}
 	return res
 }
@@ -34,7 +34,6 @@ func palindrome(s string, l, r int) string {
 		l--
 		r++
 	}
-	log.Println(l, r)
 	return s[l+1 : r]
 }
 
