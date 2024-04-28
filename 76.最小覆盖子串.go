@@ -16,32 +16,41 @@ func minWindows(s, t string) string {
 	dict := map[byte]int{}
 	vaild := 0
 	res := ""
+	//构建校验字典
 	for i := 0; i < len(t); i++ {
 		need[t[i]]++
 	}
+	//右指针开始遍历
 	for right < len(s) {
-		code := s[right]
+		key := s[right]
 		right++
-		if _, ok := need[code]; ok {
-			dict[code]++
-			if dict[code] == need[code] {
-				vaild += dict[code]
+		//如果在校验字典里 就加1 判断校验字典这个key所需的数量和已有的是否一致了
+		//一致了就把这个数量加到vaild字段
+		if _, ok := need[key]; ok {
+			dict[key]++
+			if dict[key] == need[key] {
+				vaild += dict[key]
 			}
 		}
+		//当前条件下已匹配到足够数量的值 开始从左缩减窗口
 		for vaild == len(t) {
-			d := s[left]
-			if _, ok := need[d]; ok {
-				if need[d] == dict[d] {
+			delKey := s[left]
+			//判断是不是在 校验字典里
+			//在的话代表删掉以后就不匹配了 把当前环境保存下来
+			if _, ok := need[delKey]; ok {
+				if dict[delKey] == need[delKey] {
+					//res == "" 代表第一次遇到符合条件的 把left:right截取出来
 					if res == "" {
 						res = s[left:right]
 					} else if len(s[left:right]) < len(res) {
 						res = s[left:right]
 					}
-					vaild -= dict[d]
+					vaild -= dict[delKey]
 				}
-				dict[d]--
+				dict[delKey]--
 			}
 			left++
+
 		}
 	}
 	return res

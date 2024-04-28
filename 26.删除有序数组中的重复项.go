@@ -23,9 +23,9 @@ func removeDuplicates(nums []int) int {
 			nums[slow] = nums[fast]
 		}
 		fast++
+		log.Printf("slow %d, fast %d", slow, fast)
 	}
-	slow++
-	return slow
+	return slow + 1
 }
 
 // @lc code=end

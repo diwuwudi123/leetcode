@@ -23,10 +23,8 @@ func maxSlidingWindow(nums []int, k int) []int {
 	arr := &maxArr{}
 	res := []int{}
 	for i := 0; i < len(nums); i++ {
-		if i < k-1 {
-			arr.push(nums[i])
-		} else {
-			arr.push(nums[i])
+		arr.push(nums[i])
+		if i >= k-1 {
 			max := arr.max()
 			res = append(res, max)
 			arr.pop(nums[i+1-k])

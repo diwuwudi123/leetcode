@@ -5,6 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//1->2->3->4->5
 /*
  * @lc app=leetcode.cn id=206 lang=golang
  *
@@ -22,14 +23,12 @@ type ListNode struct {
  */
 func reverseList(head *ListNode) *ListNode {
 	var pre *ListNode
-
 	cur := head
 	for cur != nil {
-		//拿到下一个节点
-		nextTmp := cur.Next
+		tmpNext := cur.Next
 		cur.Next = pre
 		pre = cur
-		cur = nextTmp
+		cur = tmpNext
 	}
 	return pre
 }

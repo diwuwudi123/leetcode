@@ -44,11 +44,7 @@ func (d *DoubleList) InsertHead(node *Node) {
 // 把这个接点从头结点拿掉
 func (d *DoubleList) RemoveHead() *Node {
 	next := d.head.next
-	d.head.next = next.next
-	next.next.pre = d.head
-	//删除这个节点
-	next.next = nil
-	next.pre = nil
+	d.RemoveNode(next)
 	return next
 }
 
