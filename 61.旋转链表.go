@@ -55,14 +55,12 @@ func rotateRight(head *ListNode, k int) *ListNode {
 		listLen++
 		list = list.Next
 	}
-	log.Println(listLen)
 	//判断实际需要移动的位置
 	if k > listLen {
 		k = k % listLen
 	} else if k == listLen {
 		return head
 	}
-	log.Println(k)
 	//如果k==0 代表不需要移动
 	if k == 0 {
 		return head
@@ -70,30 +68,19 @@ func rotateRight(head *ListNode, k int) *ListNode {
 	//如果k >0 位移实际的长度
 	// 1-2-3-4-5
 	// 右移两位 其实约等于 把链表拆分为 1-2-3   4-5 然后把head->4  把5->1
-	oldHead := head
-	newhead := &ListNode{}
-	idx := 1
-	//从指定位置把链表拆分两个
-	//需要idx = 链表长度 - 位移的数量比如 链表长度5 位移2位 就是从第三位开始断开链表
-	for head.Next != nil {
-		if idx == listLen-k {
-			newhead = head.Next
-			head.Next = nil
-			continue
-		}
-		idx++
-		head = head.Next
-	}
-	head = newhead
-	for {
-		if newhead.Next == nil {
-			newhead.Next = oldHead
-			return head
-		}
-		newhead = newhead.Next
+	idx := listLen - k
+	//把链表变成环 最后一个连到head上然后开始计算需要断开的位置 就直接断开
+	list.Next = head
+	for idx > 0 {
+		list = list.Next
+		idx--
 
 	}
-	return head
+	//从这个位置断开链接
+	newHead := list.Next
+	list.Next = nil
+
+	return newHead
 }
 
 // @lc code=end
